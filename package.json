@@ -4,7 +4,8 @@
   "description": "mynotebook is a simple notebook application for public user to create an account and store the notes which can be accessed easily in the future",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
   },
   "author": "Susan Khadka <susankhadka708@gmail.com>",
   "license": "ISC",
