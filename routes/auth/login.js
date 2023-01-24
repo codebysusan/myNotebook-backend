@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 const User = require("../../models/User");
 
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "THISISTHESECRETKEYFORJSONWEBTOKEN";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Authenticate a user using POST : "/auth/login". Don't require login
 router.post(
@@ -49,7 +49,7 @@ router.post(
 
       // Sending webtoken with user id
       res.json({ authToken });
-      
+
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

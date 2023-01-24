@@ -1,5 +1,6 @@
 const connectToMongo = require("./db");
 const express = require("express");
+require('dotenv/config');
 connectToMongo();
 const app = express();
 const port = 5000;
@@ -9,7 +10,8 @@ app.use(express.json());
 app.use(
   "/auth",
   require("./routes/auth/createuser"),
-  require("./routes/auth/login")
+  require("./routes/auth/login"),
+  require("./routes/auth/getuser")
 );
 
 app.use("/notes", require("./routes/notes"));
