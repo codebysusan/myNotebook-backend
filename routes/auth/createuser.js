@@ -3,7 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { body, validationResult } = require("express-validator");
-const User = require("../models/User");
+const User = require("../../models/User");
+
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = "THISISTHESECRETKEYFORJSONWEBTOKEN";
 
 // Create a user using POST : "/auth/createUser". Don't require login
 router.post(
@@ -21,6 +24,7 @@ router.post(
     }
 
     try {
+      
       const { firstName, lastName, email, password } = req.body;
 
       // Hashing password
@@ -40,8 +44,19 @@ router.post(
         password: hashPassword,
       });
 
-      // Sending response after user creation
-      user ? res.json({ success: "true" }) : res.json({ success: "false" });
+      // Storing using id
+      const data = {
+        user:{
+          id: user.id
+        }
+      }
+
+      // Generating authToken with the help of secret key
+      const authToken = jwt.sign(data, JWT_SECRET);
+
+      // Sending webtoken with user id
+      res.json({authToken});
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ msg: "Some error occured" });
