@@ -6,9 +6,12 @@ const port = 5000;
 
 app.use(express.json());
 
+app.use(
+  "/auth",
+  require("./routes/auth/createuser"),
+  require("./routes/auth/login")
+);
 
-// Available routes
-app.use("/auth", require("./routes/auth/createuser"));
 app.use("/notes", require("./routes/notes"));
 
 app.get("/", (req, res) => {

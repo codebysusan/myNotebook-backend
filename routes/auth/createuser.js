@@ -24,7 +24,7 @@ router.post(
     }
 
     try {
-      
+
       const { firstName, lastName, email, password } = req.body;
 
       // Hashing password
@@ -59,7 +59,7 @@ router.post(
 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ msg: "Some error occured" });
+      res.status(500).json({ msg: "Internal Server Error" });
     }
   }
 );
