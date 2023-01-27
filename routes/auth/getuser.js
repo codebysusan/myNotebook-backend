@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Create a user using POST : "/auth/createUser". Login is required
-router.post("/getUser", fetchUser, async (req, res) => {
+router.get("/getUser", fetchUser, async (req, res) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");
